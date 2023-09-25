@@ -1,8 +1,11 @@
+"use client";
+import 'bootstrap/dist/css/bootstrap.min.css'
 import './globals.css'
 import { Inter } from 'next/font/google'
-import UILinks from './links'
-
-const inter = Inter({ subsets: ['latin'] })
+import Script  from 'next/script';
+import NavigationBar from './links';
+import  { useEffect } from 'react';
+const inter = Inter({ subsets: ['latin'] });
 
 export const metadata = {
   title: 'Create Next App',
@@ -14,11 +17,14 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
+  useEffect(() => {
+    import('bootstrap/dist/js/bootstrap.bundle.min.js');
+    }, []);
   return (
     <html lang="en">
       <body className={inter.className}>
         <div>
-          <UILinks />
+          <NavigationBar />
         </div>
         <div>
           {children}
