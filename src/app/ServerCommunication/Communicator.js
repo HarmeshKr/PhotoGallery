@@ -31,3 +31,9 @@ export const fetchCategories=()=>async(dispatch,getState)=>{
     const json=await response.json();
     dispatch({type:'photo/addCategories',payload:json});
 }
+
+export const fetchPhotosByCategory=(id)=>async(dispatch,getState)=>{
+    const response=await window.fetch(`http://localhost:3031/photos/${id}`,{method:'GET'});
+    const json=await response.json();
+    return json;
+}
