@@ -1,8 +1,14 @@
-
 import Link from "next/link";
-
+import {  useDispatch, useSelector } from "react-redux";
+import { categorySelector, fetchCategories } from "./ServerCommunication/Communicator";
+import { Dispatch, useEffect, useState } from "react";
 export default function NavigationBar(){
-   
+  const dispatch=useDispatch();
+  const categories=useSelector(categorySelector)||[];
+    useEffect(()=>{
+      dispatch(fetchCategories());
+    },[]);
+    
     return(<nav className="navbar navbar-expand-lg navbar-dark bg-dark">
     <div className="container-fluid">
       <a className="navbar-brand" href="#">PhotoGallery</a>
@@ -22,14 +28,9 @@ export default function NavigationBar(){
               Categories
             </a>
             <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
-              <li><Link className="dropdown-item" href="#">Fruits</Link></li>
-              <li><Link className="dropdown-item" href="#">Flowers</Link></li>
-              
-              <li><hr className="dropdown-divider"/></li>
-              <li>
-                <Link href='/PhotoPage/Birds' className="dropdown-item">Birds</Link>
-              </li>
-              <li><a className="dropdown-item" href="#">Wild Animals</a></li>
+              {
+                categories.map((c:any)=><li key={c.categoryId}><Link href={`/PhotoPage/${c.categoryId}`} className="dropdown-item">{c.name}</Link></li>)
+              }
             </ul>
           </li>
           <li className="nav-item">

@@ -2,9 +2,10 @@
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './globals.css'
 import { Inter } from 'next/font/google'
-import Script  from 'next/script';
 import NavigationBar from './links';
 import  { useEffect } from 'react';
+import { Provider } from 'react-redux';
+import { photoStore } from './ServerCommunication/Communicator';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata = {
@@ -17,6 +18,7 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
+ 
   useEffect(() => {
     import('bootstrap/dist/js/bootstrap.bundle.min.js');
     }, []);
@@ -24,8 +26,10 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <div className="container">
+          <Provider store={photoStore}>
           <NavigationBar />
           {children}
+          </Provider>
         </div>
         </body>
     </html>

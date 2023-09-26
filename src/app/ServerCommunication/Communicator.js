@@ -1,11 +1,8 @@
 import { configureStore, createSlice } from "@reduxjs/toolkit";
 
-export class CartInfo{
-    constructor(public customerId:number,public cart:number[]){}
-}
 const photoSlicer=createSlice({
     name:'photo',
-    initialState:new CartInfo(0,[]),
+    initialState:{categories:[],customerId:0,cart:[]},
     reducers:{
         addToCart:(state,action)=>{
             state.cart.push(parseInt(action.payload))
@@ -16,10 +13,21 @@ const photoSlicer=createSlice({
         },
         addCustomerId:(state,action)=>{
             state.customerId=parseInt(action.payload);
+        },
+        addCategories:(state,action)=>{
+            state.categories=action.payload;
         }
     }
 });
 
 export const photoStore=configureStore({reducer:{PhotoManager:photoSlicer.reducer}})
 
-export const photoStatus=(state:CartInfo)=>{ return {id:state.customerId,cart:state.cart}};
+export const photoStatus=(state)=>{ return {id:state.customerId,cart:state.cart}};
+
+export const categorySelector=(state)=>state.PhotoManager.categories;
+
+export const fetchCategories=()=>async(dispatch,getState)=>{
+    const response=await window.fetch('http://localhost:3031/categories',{method:'GET'});
+    const json=await response.json();
+    dispatch({type:'photo/addCategories',payload:json});
+}
