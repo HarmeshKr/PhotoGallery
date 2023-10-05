@@ -1,7 +1,8 @@
 import Link from "next/link";
 import {  useDispatch, useSelector } from "react-redux";
 import { categorySelector, fetchCategories } from "./ServerCommunication/Communicator";
-import { Dispatch, useEffect, useState } from "react";
+import {  useEffect } from "react";
+
 export default function NavigationBar(){
   const dispatch=useDispatch();
   const categories=useSelector(categorySelector)||[];
@@ -40,7 +41,9 @@ export default function NavigationBar(){
         <form className="d-flex">
           <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
           <button className="btn btn-light" type="submit">Search</button>
+          <Link href='/cart' className="btn btn-light ms-2 bg-warning">Cart</Link>
         </form>
+        
       </div>
     </div>
   </nav>);

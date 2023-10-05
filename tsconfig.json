@@ -23,6 +23,6 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/cart/cartstore.tsc", "src/app/ServerCommunication/Communicator.js"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/cart/cartstore.tsc", "src/app/ServerCommunication/Communicator.js", "src/app/DialogBox.js"],
   "exclude": ["node_modules"]
 }
