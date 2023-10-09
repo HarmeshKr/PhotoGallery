@@ -2,7 +2,7 @@ import { configureStore, createSlice } from "@reduxjs/toolkit";
 
 const photoSlicer=createSlice({
     name:'photo',
-    initialState:{categories:[],customerId:0,cart:[]},
+    initialState:{categories:[],customerId:0,cart:[],finalOrder:[]},
     reducers:{
         addToCart:(state,action)=>{
             state.cart.push(action.payload);
@@ -10,6 +10,9 @@ const photoSlicer=createSlice({
         removeFromCart:(state,action)=>{
             const index=state.cart.indexOf(action.payload);
             state.cart.splice(index,1);
+        },
+        finalizedOrder:(state,action)=>{
+            state.finalOrder.push(action.payload);
         },
         addCustomerId:(state,action)=>{
             state.customerId=parseInt(action.payload);
