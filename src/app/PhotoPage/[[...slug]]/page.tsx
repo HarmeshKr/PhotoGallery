@@ -26,14 +26,15 @@ export default function Photos({ params }: { params: { slug: string } }){
     },[pr.slug]);
   
     
-    const addToCart=(e,id)=>{
+    const addToCart=(e,p)=>{
         /* 
           //if bootstrap js cdn link is used, use the following line. No import required.
              myModal = new bootstrap.Modal(document.getElementById('staticBackdrop'), options);
         */
          myModal = new Modal(document.getElementById('staticBackdrop'), options);
         dialogue.response=(a)=>{
-            dispatch({type:'photo/addToCart',payload:id});
+            let load={...p,quantity:1};
+            dispatch({type:'photo/addToCart',payload:load});
             myModal.hide();
         };
         setData(dialogue);
@@ -54,7 +55,7 @@ export default function Photos({ params }: { params: { slug: string } }){
                         </div>
                         <div className="card-footer">
                            
-                            <button onClick={e=>addToCart(e,p._id)}
+                            <button onClick={e=>addToCart(e,p)}
                             className="btn btn-primary float-end">Add To Cart</button>
                             <DialogBox {...dialogData}/>
                         </div>
