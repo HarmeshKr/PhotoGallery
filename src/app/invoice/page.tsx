@@ -19,7 +19,7 @@ export default function InvoiceComponent(){
         st.invoiceId=temp.invoiceId;
         st.orderDate=new Date(temp.orderDate);
         setCart(st);
-        dispatch({type:'photo/clear',payload:null});
+        dispatch({type:'photo/clean',payload:null});
    },[]);
     return(<div className="container">
         <div className="row">

@@ -8,9 +8,16 @@ import { useRouter } from "next/navigation";
 export function Login(props){
     return(<div className="container">
         <div className="row">
+        <div className="col-md-4"></div>
+        <div className="col-md-4">
+            <img src="http://localhost:3031/Images/Login.jpg" alt="login" />
+        </div>
+        <div className="col-md-4"></div>
+        </div>
+        <div className="row">
             <div className="col-md-4"></div>
             <div className="col-md-4">
-            <label  className="form-label">User Id</label>
+            <label  className="form-label">User Email ID</label>
                 <br/>
                 <input type="text"  className="form-control"  onBlur={e=>props.changeuid(e.target.value)}/>
                 <br/>
@@ -47,8 +54,6 @@ export default function Validation(){
     };
     config.login=(e:any)=>{
         let user={email:em,password:pass};
-        alert(JSON.stringify(user));
-
         dispatch(userValidation(user)).then(r=>{
             if(r.length==0){
                 setMessage('Invalid UserName or Password..');
@@ -63,8 +68,5 @@ export default function Validation(){
         });
     };
 
-    return(<div>
-        <h3>Type John &nbsp; &nbsp; &nbsp; 123</h3>
-        <Login {...config}></Login>
-    </div>);
+    return(<Login {...config}></Login>);
 }
